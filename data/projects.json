@@ -1,0 +1,111 @@
+[
+  {
+    "slug": "hong-kong-internet-adoption",
+    "number": "01",
+    "category": "Exploratory analysis",
+    "title": "How Hong Kong connected",
+    "deck": "A four-decade view of internet adoption—and a reminder that subscriptions and people are not the same measure.",
+    "year": "1980–2020",
+    "dataset": "Global Internet Users 1980–2020 · 8,867 country-year rows",
+    "question": "How did internet access change in Hong Kong, and how do user counts compare with cellular and broadband subscriptions?",
+    "method": "I filtered the global country-year dataset to Hong Kong, then followed internet-user counts and three access indicators over time with line charts.",
+    "finding": "The series shows a strong rise in internet use from the mid-1990s onward. Cellular subscriptions grow on a different scale and eventually exceed 100 per 100 people, so they cannot be read as a count of unique internet users.",
+    "limitation": "These are aggregated country-level indicators. A subscription is not proof that a unique person has internet access, and the dataset’s definitions should be checked before comparing metrics directly.",
+    "tools": ["Python", "pandas", "Seaborn", "Matplotlib"],
+    "dataFiles": ["Global Internet Users 1980 - 2020 - kaggle.csv"],
+    "notebook": "01-hong-kong-internet-adoption.ipynb",
+    "charts": [
+      {"src": "assets/charts/hk-users-over-time.png", "alt": "Line chart of the number of internet users in Hong Kong over time.", "caption": "Internet-user counts rise markedly after the mid-1990s."},
+      {"src": "assets/charts/hk-internet-metrics.png", "alt": "Line chart comparing internet use, cellular subscriptions, and broadband subscriptions in Hong Kong.", "caption": "Comparing indicators reveals that subscriptions and internet users measure different things."}
+    ],
+    "steps": [
+      {"title": "Start wide", "text": "The source dataset spans countries and years. I first checked its size and fields before narrowing the question to one place."},
+      {"title": "Filter to Hong Kong", "text": "The project uses the Hong Kong time series, keeping the country filter explicit so the plotted trend has a clear scope."},
+      {"title": "Compare carefully", "text": "Separate charts make the change over time visible while preserving the distinction between internet users and service subscriptions."}
+    ],
+    "reflection": "A useful next step would be to verify indicator definitions and add population-normalized measures before making direct cross-metric comparisons."
+  },
+  {
+    "slug": "loan-approval-classification",
+    "number": "02",
+    "category": "Classification",
+    "title": "A decision tree on a 61-row loan sample",
+    "deck": "A small classification exercise that produced a high holdout score—and a clear lesson about sample size and model validation.",
+    "year": "Course project",
+    "dataset": "loan.csv · 61 records · 8 original fields",
+    "question": "Can applicant attributes help a decision tree distinguish the recorded approved and denied loan outcomes?",
+    "method": "I one-hot encoded the non-target columns, split the 61 rows 50/50, fit a default DecisionTreeClassifier, and reviewed accuracy, a classification report, and a confusion matrix.",
+    "finding": "The saved run scored 30 of 31 test records correctly (96.8%). The confusion matrix shows 19 approved records classified correctly, one approved record misclassified, and all 11 denied records classified correctly in that split.",
+    "limitation": "This is not evidence of real-world lending performance. The dataset is tiny, one-hot encoding expands it to 147 features, and the split has no fixed random seed. The result can change substantially with a different split; fairness, calibration, and external validation were not assessed.",
+    "tools": ["Python", "pandas", "scikit-learn", "Seaborn", "Matplotlib"],
+    "dataFiles": ["loan.csv (61 rows; source described on the original project page as Kaggle)"],
+    "notebook": "02-loan-approval-classification.ipynb",
+    "charts": [
+      {"src": "assets/charts/loan-outcome-balance.png", "alt": "Bar chart comparing approved and denied loan records in the small dataset.", "caption": "The sample contains more approved than denied outcomes."},
+      {"src": "assets/charts/loan-confusion-matrix.png", "alt": "Confusion matrix for the saved decision-tree test split.", "caption": "The matrix makes the single misclassified test record visible."},
+      {"src": "assets/charts/loan-decision-tree.png", "alt": "Decision tree produced by the original notebook.", "caption": "The original tree is included as a record of the model, not as a recommended decision policy."}
+    ],
+    "steps": [
+      {"title": "Inspect the sample", "text": "The notebook checks fields, types, missingness, and outcome counts before preparing model inputs."},
+      {"title": "Encode and split", "text": "Categorical and numeric columns are one-hot encoded. A single 50/50 train-test split leaves only 31 records for evaluation."},
+      {"title": "Evaluate the errors", "text": "Accuracy is paired with class-level precision and recall and a confusion matrix, which is more informative than a score alone."}
+    ],
+    "reflection": "For a stronger study, I would use stratified cross-validation, prune or regularize the tree, compare simple baselines, and test error rates across relevant groups. This model should never be used to make actual credit decisions."
+  },
+  {
+    "slug": "weather-and-produce-prices",
+    "number": "03",
+    "category": "Regression",
+    "title": "When weather meets produce prices",
+    "deck": "Joining UK weather and weekly produce-price records to test whether a few weather variables explain price movement.",
+    "year": "2017–2022",
+    "dataset": "9,647 produce-price rows · 2,191 daily weather rows",
+    "question": "Do temperature, humidity, or wind speed help explain weekly fruit and vegetable prices in the UK?",
+    "method": "I converted weather records to weekly observations, aligned dates, joined them with produce prices, then tested K-nearest-neighbor and linear-regression models on selected products and weather features.",
+    "finding": "Weather alone was a weak predictor for apples in the saved runs (R² around 0.02–0.04). Carrot prices had a stronger relationship with temperature in one model (R² 0.33), while humidity was weaker (0.13) and wind speed offered little explanatory value. These are exploratory associations, not causal effects.",
+    "limitation": "The two sources have different collection frequencies and are aligned through sampled dates. The simple models omit many potential drivers of price; an apparent change after 2020 cannot be attributed to COVID-19 from this analysis alone.",
+    "tools": ["Python", "pandas", "scikit-learn", "Seaborn", "Matplotlib"],
+    "dataFiles": ["fruitvegprices-2017_2022.csv", "combined_united_kingdom_2017_to_2022.csv (weather source noted as Visual Crossing)"],
+    "notebook": "03-weather-and-produce-prices.ipynb",
+    "charts": [
+      {"src": "assets/charts/produce-price-history.png", "alt": "Weekly produce prices over time, separated by variety.", "caption": "The price series varies by both date and variety."},
+      {"src": "assets/charts/pear-price-prediction.png", "alt": "Actual and predicted pear prices on the held-out test dates.", "caption": "A K-nearest-neighbor model compares predicted and observed pear prices."},
+      {"src": "assets/charts/weather-price-model-apples.png", "alt": "Actual versus predicted produce prices for apples using a weather variable.", "caption": "The apple models explain little of the price variation in the notebook’s held-out splits."},
+      {"src": "assets/charts/weather-price-model-carrots.png", "alt": "Actual versus predicted produce prices for carrots using weather inputs.", "caption": "Temperature showed the strongest tested relationship for carrots, but this does not establish causality."}
+    ],
+    "steps": [
+      {"title": "Align the timelines", "text": "Price data is weekly while weather data is daily. The notebook samples the weather series by week and joins on matching dates."},
+      {"title": "Fit simple baselines", "text": "KNN is used for a pear-price exercise; linear regression tests temperature, humidity, and wind speed for selected products."},
+      {"title": "Read the score with context", "text": "R² and mean squared error are useful diagnostics, but they do not show that weather causes the price changes."}
+    ],
+    "reflection": "A stronger model would use a time-aware validation split and add seasonality, variety, supply, and market variables. I would also report uncertainty and compare against a time-series baseline."
+  },
+  {
+    "slug": "customer-segmentation",
+    "number": "04",
+    "category": "Clustering",
+    "title": "Exploring customer segments",
+    "deck": "Using scaling, PCA, and K-means to explore patterns in customer purchasing and campaign-response data.",
+    "year": "Dataset snapshot",
+    "dataset": "2,240 customer rows · 29 fields before preprocessing",
+    "question": "Can purchasing and engagement patterns be grouped into a small number of customer segments?",
+    "method": "The notebook removes Education and Marital_Status, standardizes numeric columns, uses PCA and an elbow/silhouette review to explore cluster counts, then fits K-means with three clusters.",
+    "finding": "After rows with missing values are dropped, 2,216 records remain. The selected three-cluster run contains groups of 1,040, 635, and 541 records. Correlation and cluster-profile plots help inspect patterns; the notebook does not establish a validated customer strategy.",
+    "limitation": "The analysis omits two categorical fields, includes ID among standardized numeric features, and drops 24 rows with missing values. Those choices can affect distance-based clusters. The three groups need further validation and substantive interpretation before being used for business decisions.",
+    "tools": ["Python", "pandas", "scikit-learn", "SciPy", "Seaborn", "Matplotlib"],
+    "dataFiles": ["customer_segmentation.csv (source described in the notebook as Kaggle)"],
+    "notebook": "04-customer-segmentation.ipynb",
+    "charts": [
+      {"src": "assets/charts/customer-correlation-heatmap.png", "alt": "Correlation heatmap of the numeric customer data used in the notebook.", "caption": "Correlations offer a first look at relationships among numeric features."},
+      {"src": "assets/charts/customer-elbow-curve.png", "alt": "K-means inertia by cluster count, used as an elbow-method diagnostic.", "caption": "The elbow curve informed the notebook’s choice to inspect three clusters."},
+      {"src": "assets/charts/customer-silhouette-scores.png", "alt": "Silhouette scores across candidate cluster counts.", "caption": "Silhouette scores provide another diagnostic for cluster separation."},
+      {"src": "assets/charts/customer-cluster-profiles.png", "alt": "Boxplots comparing standardized purchasing and engagement features across the three clusters.", "caption": "Feature profiles help compare the clusters, but interpretation requires validation."}
+    ],
+    "steps": [
+      {"title": "Prepare numeric features", "text": "The notebook removes two categorical fields, checks missingness, standardizes numeric columns, and excludes incomplete rows before PCA and clustering."},
+      {"title": "Explore the structure", "text": "A three-component PCA view and elbow/silhouette diagnostics are used to examine candidate groupings."},
+      {"title": "Inspect the segments", "text": "K-means with three clusters yields groups of 1,040, 635, and 541 records, then boxplots compare standardized features."}
+    ],
+    "reflection": "I would exclude identifier columns, encode categorical variables deliberately, compare cluster stability across seeds, and validate any proposed segment against outcomes not used to create it."
+  }
+]

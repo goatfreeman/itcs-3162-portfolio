@@ -1,0 +1,6 @@
+# Dataset drops and local tooling
+__pycache__/
+*.py[cod]
+.DS_Store
+# Supply source datasets locally; never commit them before checking license/privacy.
+data/*.csv

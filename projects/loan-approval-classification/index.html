@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A small classification exercise that produced a high holdout score—and a clear lesson about sample size and model validation.">
+  <meta name="theme-color" content="#f5f2e9">
+  <title>A decision tree on a 61-row loan sample — Matthew Ho</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../../index.html" aria-label="Matthew Ho, portfolio home"><span class="wordmark-mark" aria-hidden="true">MH</span><span>Matthew Ho <span aria-hidden="true">/</span> Data Notes</span></a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">Menu</button>
+    <nav class="site-nav" id="primary-navigation" data-site-nav aria-label="Main navigation">
+      <a href="../../index.html#projects" aria-current="page">Projects</a>
+      <a href="../../index.html#about" >About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="case-hero"><div class="container case-hero-grid">
+    <div><p class="eyebrow">PROJECT 02 · Classification</p><h1>A decision tree on a 61-row loan sample</h1><p class="lede">A small classification exercise that produced a high holdout score—and a clear lesson about sample size and model validation.</p>
+      <div class="case-actions"><a class="button-link" href="../../notebooks/02-loan-approval-classification.ipynb" download="02-loan-approval-classification.ipynb">Download notebook <span aria-hidden="true">↓</span></a><a class="text-link" href="../../index.html#projects">All projects</a></div>
+    </div>
+    <figure class="case-hero-figure"><img fetchpriority="high" src="../../assets/charts/loan-outcome-balance.png" alt="Bar chart comparing approved and denied loan records in the small dataset."><figcaption>The sample contains more approved than denied outcomes.</figcaption></figure>
+  </div></section>
+  <div class="container"><div class="case-facts" aria-label="Project details"><div class="case-fact"><span class="label">Data</span><strong>loan.csv · 61 records · 8 original fields</strong></div><div class="case-fact"><span class="label">Period</span><strong>Course project</strong></div><div class="case-fact"><span class="label">Tools</span><strong>Python, pandas, scikit-learn, Seaborn, Matplotlib</strong></div></div></div>
+  <div class="container case-layout">
+    <nav class="case-rail" aria-label="On this page"><p>On this page</p><a href="#question">Question</a><a href="#approach">Approach</a><a href="#findings">Findings & limits</a><a href="#visuals">Visuals</a><a href="#notebook">Notebook</a></nav>
+    <div class="case-main">
+      <section id="question"><p class="eyebrow">THE QUESTION</p><h2>What I wanted to understand</h2><p class="answer">Can applicant attributes help a decision tree distinguish the recorded approved and denied loan outcomes?</p></section>
+      <section id="approach"><p class="eyebrow">THE WORKFLOW</p><h2>From raw data to a testable view</h2><p>I one-hot encoded the non-target columns, split the 61 rows 50/50, fit a default DecisionTreeClassifier, and reviewed accuracy, a classification report, and a confusion matrix.</p><ol class="workflow-list"><li><span class="step">01</span><div><h3>Inspect the sample</h3><p>The notebook checks fields, types, missingness, and outcome counts before preparing model inputs.</p></div></li><li><span class="step">02</span><div><h3>Encode and split</h3><p>Categorical and numeric columns are one-hot encoded. A single 50/50 train-test split leaves only 31 records for evaluation.</p></div></li><li><span class="step">03</span><div><h3>Evaluate the errors</h3><p>Accuracy is paired with class-level precision and recall and a confusion matrix, which is more informative than a score alone.</p></div></li></ol></section>
+      <section id="findings"><p class="eyebrow">WHAT THE RUN SHOWED</p><h2>Findings, with caveats.</h2><div class="result-panel"><div><h3>Observed finding</h3><p>The saved run scored 30 of 31 test records correctly (96.8%). The confusion matrix shows 19 approved records classified correctly, one approved record misclassified, and all 11 denied records classified correctly in that split.</p></div><div><h3>What to keep in mind</h3><p>This is not evidence of real-world lending performance. The dataset is tiny, one-hot encoding expands it to 147 features, and the split has no fixed random seed. The result can change substantially with a different split; fairness, calibration, and external validation were not assessed.</p></div></div>
+        <p class="data-note" style="margin-top:18px"><strong>Next iteration:</strong> For a stronger study, I would use stratified cross-validation, prune or regularize the tree, compare simple baselines, and test error rates across relevant groups. This model should never be used to make actual credit decisions.</p>
+      </section>
+      <section id="visuals"><p class="eyebrow">SELECTED FIGURES</p><h2>What the analysis looked like</h2><div class="chart-grid"><figure class="chart-figure"><img loading="lazy" src="../../assets/charts/loan-confusion-matrix.png" alt="Confusion matrix for the saved decision-tree test split."><figcaption>The matrix makes the single misclassified test record visible.</figcaption></figure><figure class="chart-figure"><img loading="lazy" src="../../assets/charts/loan-decision-tree.png" alt="Decision tree produced by the original notebook."><figcaption>The original tree is included as a record of the model, not as a recommended decision policy.</figcaption></figure></div></section>
+      <section id="notebook"><p class="eyebrow">REPRODUCIBILITY</p><h2>Notebook and source data</h2><p>The downloadable notebook preserves the analysis code with saved outputs removed and data paths normalized to a local <code>data/</code> folder. Dataset files are not bundled; consult <code>notebooks/README.md</code> for the filenames referenced by the notebook and supply appropriately licensed source data before running it.</p><a class="text-link" href="../../notebooks/02-loan-approval-classification.ipynb" download>Download notebook <span aria-hidden="true">↓</span></a></section>
+      <nav class="project-switcher" aria-label="Other case studies"><a href="../../projects/hong-kong-internet-adoption/index.html"><span>Previous project</span>← How Hong Kong connected</a><a href="../../projects/weather-and-produce-prices/index.html"><span>Next project</span>When weather meets produce prices →</a></nav>
+    </div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container footer-inner">
+<p>Matthew Ho · UNC Charlotte · ITCS 3162</p>
+<p>Coursework portfolio · <a href="../../index.html#projects">Back to projects ↑</a></p>
+</div></footer>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Joining UK weather and weekly produce-price records to test whether a few weather variables explain price movement.">
+  <meta name="theme-color" content="#f5f2e9">
+  <title>When weather meets produce prices — Matthew Ho</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../../index.html" aria-label="Matthew Ho, portfolio home"><span class="wordmark-mark" aria-hidden="true">MH</span><span>Matthew Ho <span aria-hidden="true">/</span> Data Notes</span></a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">Menu</button>
+    <nav class="site-nav" id="primary-navigation" data-site-nav aria-label="Main navigation">
+      <a href="../../index.html#projects" aria-current="page">Projects</a>
+      <a href="../../index.html#about" >About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="case-hero"><div class="container case-hero-grid">
+    <div><p class="eyebrow">PROJECT 03 · Regression</p><h1>When weather meets produce prices</h1><p class="lede">Joining UK weather and weekly produce-price records to test whether a few weather variables explain price movement.</p>
+      <div class="case-actions"><a class="button-link" href="../../notebooks/03-weather-and-produce-prices.ipynb" download="03-weather-and-produce-prices.ipynb">Download notebook <span aria-hidden="true">↓</span></a><a class="text-link" href="../../index.html#projects">All projects</a></div>
+    </div>
+    <figure class="case-hero-figure"><img fetchpriority="high" src="../../assets/charts/produce-price-history.png" alt="Weekly produce prices over time, separated by variety."><figcaption>The price series varies by both date and variety.</figcaption></figure>
+  </div></section>
+  <div class="container"><div class="case-facts" aria-label="Project details"><div class="case-fact"><span class="label">Data</span><strong>9,647 produce-price rows · 2,191 daily weather rows</strong></div><div class="case-fact"><span class="label">Period</span><strong>2017–2022</strong></div><div class="case-fact"><span class="label">Tools</span><strong>Python, pandas, scikit-learn, Seaborn, Matplotlib</strong></div></div></div>
+  <div class="container case-layout">
+    <nav class="case-rail" aria-label="On this page"><p>On this page</p><a href="#question">Question</a><a href="#approach">Approach</a><a href="#findings">Findings & limits</a><a href="#visuals">Visuals</a><a href="#notebook">Notebook</a></nav>
+    <div class="case-main">
+      <section id="question"><p class="eyebrow">THE QUESTION</p><h2>What I wanted to understand</h2><p class="answer">Do temperature, humidity, or wind speed help explain weekly fruit and vegetable prices in the UK?</p></section>
+      <section id="approach"><p class="eyebrow">THE WORKFLOW</p><h2>From raw data to a testable view</h2><p>I converted weather records to weekly observations, aligned dates, joined them with produce prices, then tested K-nearest-neighbor and linear-regression models on selected products and weather features.</p><ol class="workflow-list"><li><span class="step">01</span><div><h3>Align the timelines</h3><p>Price data is weekly while weather data is daily. The notebook samples the weather series by week and joins on matching dates.</p></div></li><li><span class="step">02</span><div><h3>Fit simple baselines</h3><p>KNN is used for a pear-price exercise; linear regression tests temperature, humidity, and wind speed for selected products.</p></div></li><li><span class="step">03</span><div><h3>Read the score with context</h3><p>R² and mean squared error are useful diagnostics, but they do not show that weather causes the price changes.</p></div></li></ol></section>
+      <section id="findings"><p class="eyebrow">WHAT THE RUN SHOWED</p><h2>Findings, with caveats.</h2><div class="result-panel"><div><h3>Observed finding</h3><p>Weather alone was a weak predictor for apples in the saved runs (R² around 0.02–0.04). Carrot prices had a stronger relationship with temperature in one model (R² 0.33), while humidity was weaker (0.13) and wind speed offered little explanatory value. These are exploratory associations, not causal effects.</p></div><div><h3>What to keep in mind</h3><p>The two sources have different collection frequencies and are aligned through sampled dates. The simple models omit many potential drivers of price; an apparent change after 2020 cannot be attributed to COVID-19 from this analysis alone.</p></div></div>
+        <p class="data-note" style="margin-top:18px"><strong>Next iteration:</strong> A stronger model would use a time-aware validation split and add seasonality, variety, supply, and market variables. I would also report uncertainty and compare against a time-series baseline.</p>
+      </section>
+      <section id="visuals"><p class="eyebrow">SELECTED FIGURES</p><h2>What the analysis looked like</h2><div class="chart-grid"><figure class="chart-figure"><img loading="lazy" src="../../assets/charts/pear-price-prediction.png" alt="Actual and predicted pear prices on the held-out test dates."><figcaption>A K-nearest-neighbor model compares predicted and observed pear prices.</figcaption></figure><figure class="chart-figure"><img loading="lazy" src="../../assets/charts/weather-price-model-apples.png" alt="Actual versus predicted produce prices for apples using a weather variable."><figcaption>The apple models explain little of the price variation in the notebook’s held-out splits.</figcaption></figure><figure class="chart-figure"><img loading="lazy" src="../../assets/charts/weather-price-model-carrots.png" alt="Actual versus predicted produce prices for carrots using weather inputs."><figcaption>Temperature showed the strongest tested relationship for carrots, but this does not establish causality.</figcaption></figure></div></section>
+      <section id="notebook"><p class="eyebrow">REPRODUCIBILITY</p><h2>Notebook and source data</h2><p>The downloadable notebook preserves the analysis code with saved outputs removed and data paths normalized to a local <code>data/</code> folder. Dataset files are not bundled; consult <code>notebooks/README.md</code> for the filenames referenced by the notebook and supply appropriately licensed source data before running it.</p><a class="text-link" href="../../notebooks/03-weather-and-produce-prices.ipynb" download>Download notebook <span aria-hidden="true">↓</span></a></section>
+      <nav class="project-switcher" aria-label="Other case studies"><a href="../../projects/loan-approval-classification/index.html"><span>Previous project</span>← A decision tree on a 61-row loan sample</a><a href="../../projects/customer-segmentation/index.html"><span>Next project</span>Exploring customer segments →</a></nav>
+    </div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container footer-inner">
+<p>Matthew Ho · UNC Charlotte · ITCS 3162</p>
+<p>Coursework portfolio · <a href="../../index.html#projects">Back to projects ↑</a></p>
+</div></footer>
+</body>
+</html>

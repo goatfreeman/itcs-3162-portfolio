@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A four-decade view of internet adoption—and a reminder that subscriptions and people are not the same measure.">
+  <meta name="theme-color" content="#f5f2e9">
+  <title>How Hong Kong connected — Matthew Ho</title>
+  <link rel="stylesheet" href="../../assets/site.css">
+  <script defer src="../../assets/site.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="wordmark" href="../../index.html" aria-label="Matthew Ho, portfolio home"><span class="wordmark-mark" aria-hidden="true">MH</span><span>Matthew Ho <span aria-hidden="true">/</span> Data Notes</span></a>
+    <button class="nav-toggle" type="button" data-nav-toggle aria-controls="primary-navigation" aria-expanded="false" aria-label="Open navigation">Menu</button>
+    <nav class="site-nav" id="primary-navigation" data-site-nav aria-label="Main navigation">
+      <a href="../../index.html#projects" aria-current="page">Projects</a>
+      <a href="../../index.html#about" >About</a>
+    </nav>
+  </div>
+</header>
+<main id="main">
+  <section class="case-hero"><div class="container case-hero-grid">
+    <div><p class="eyebrow">PROJECT 01 · Exploratory analysis</p><h1>How Hong Kong connected</h1><p class="lede">A four-decade view of internet adoption—and a reminder that subscriptions and people are not the same measure.</p>
+      <div class="case-actions"><a class="button-link" href="../../notebooks/01-hong-kong-internet-adoption.ipynb" download="01-hong-kong-internet-adoption.ipynb">Download notebook <span aria-hidden="true">↓</span></a><a class="text-link" href="../../index.html#projects">All projects</a></div>
+    </div>
+    <figure class="case-hero-figure"><img fetchpriority="high" src="../../assets/charts/hk-users-over-time.png" alt="Line chart of the number of internet users in Hong Kong over time."><figcaption>Internet-user counts rise markedly after the mid-1990s.</figcaption></figure>
+  </div></section>
+  <div class="container"><div class="case-facts" aria-label="Project details"><div class="case-fact"><span class="label">Data</span><strong>Global Internet Users 1980–2020 · 8,867 country-year rows</strong></div><div class="case-fact"><span class="label">Period</span><strong>1980–2020</strong></div><div class="case-fact"><span class="label">Tools</span><strong>Python, pandas, Seaborn, Matplotlib</strong></div></div></div>
+  <div class="container case-layout">
+    <nav class="case-rail" aria-label="On this page"><p>On this page</p><a href="#question">Question</a><a href="#approach">Approach</a><a href="#findings">Findings & limits</a><a href="#visuals">Visuals</a><a href="#notebook">Notebook</a></nav>
+    <div class="case-main">
+      <section id="question"><p class="eyebrow">THE QUESTION</p><h2>What I wanted to understand</h2><p class="answer">How did internet access change in Hong Kong, and how do user counts compare with cellular and broadband subscriptions?</p></section>
+      <section id="approach"><p class="eyebrow">THE WORKFLOW</p><h2>From raw data to a testable view</h2><p>I filtered the global country-year dataset to Hong Kong, then followed internet-user counts and three access indicators over time with line charts.</p><ol class="workflow-list"><li><span class="step">01</span><div><h3>Start wide</h3><p>The source dataset spans countries and years. I first checked its size and fields before narrowing the question to one place.</p></div></li><li><span class="step">02</span><div><h3>Filter to Hong Kong</h3><p>The project uses the Hong Kong time series, keeping the country filter explicit so the plotted trend has a clear scope.</p></div></li><li><span class="step">03</span><div><h3>Compare carefully</h3><p>Separate charts make the change over time visible while preserving the distinction between internet users and service subscriptions.</p></div></li></ol></section>
+      <section id="findings"><p class="eyebrow">WHAT THE RUN SHOWED</p><h2>Findings, with caveats.</h2><div class="result-panel"><div><h3>Observed finding</h3><p>The series shows a strong rise in internet use from the mid-1990s onward. Cellular subscriptions grow on a different scale and eventually exceed 100 per 100 people, so they cannot be read as a count of unique internet users.</p></div><div><h3>What to keep in mind</h3><p>These are aggregated country-level indicators. A subscription is not proof that a unique person has internet access, and the dataset’s definitions should be checked before comparing metrics directly.</p></div></div>
+        <p class="data-note" style="margin-top:18px"><strong>Next iteration:</strong> A useful next step would be to verify indicator definitions and add population-normalized measures before making direct cross-metric comparisons.</p>
+      </section>
+      <section id="visuals"><p class="eyebrow">SELECTED FIGURES</p><h2>What the analysis looked like</h2><div class="chart-grid"><figure class="chart-figure"><img loading="lazy" src="../../assets/charts/hk-internet-metrics.png" alt="Line chart comparing internet use, cellular subscriptions, and broadband subscriptions in Hong Kong."><figcaption>Comparing indicators reveals that subscriptions and internet users measure different things.</figcaption></figure></div></section>
+      <section id="notebook"><p class="eyebrow">REPRODUCIBILITY</p><h2>Notebook and source data</h2><p>The downloadable notebook preserves the analysis code with saved outputs removed and data paths normalized to a local <code>data/</code> folder. Dataset files are not bundled; consult <code>notebooks/README.md</code> for the filenames referenced by the notebook and supply appropriately licensed source data before running it.</p><a class="text-link" href="../../notebooks/01-hong-kong-internet-adoption.ipynb" download>Download notebook <span aria-hidden="true">↓</span></a></section>
+      <nav class="project-switcher" aria-label="Other case studies"><a href="../../projects/loan-approval-classification/index.html"><span>Next project</span>A decision tree on a 61-row loan sample →</a></nav>
+    </div>
+  </div>
+</main>
+<footer class="site-footer"><div class="container footer-inner">
+<p>Matthew Ho · UNC Charlotte · ITCS 3162</p>
+<p>Coursework portfolio · <a href="../../index.html#projects">Back to projects ↑</a></p>
+</div></footer>
+</body>
+</html>
