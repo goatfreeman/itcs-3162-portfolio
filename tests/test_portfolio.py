@@ -47,5 +47,17 @@ class PortfolioAcceptanceTests(unittest.TestCase):
             self.assertIn('<h1', page)
             self.assertIn('Download notebook', page)
 
+    def test_project_images_open_in_an_accessible_lightbox(self):
+        pages = [ROOT / 'index.html'] + [ROOT / 'projects' / p['slug'] / 'index.html' for p in self.projects]
+        for path in pages:
+            with self.subTest(page=path.name, parent=path.parent.name):
+                page = path.read_text(encoding='utf-8')
+                self.assertIn('data-expand-image', page)
+                self.assertIn('<dialog', page)
+                self.assertIn('data-viewer-close', page)
+        script = (ROOT / 'assets' / 'site.js').read_text(encoding='utf-8')
+        self.assertIn('showModal()', script)
+        self.assertIn('returnFocus', script)
+
 if __name__ == '__main__':
     unittest.main()

@@ -51,9 +51,26 @@ def document(title: str, description: str, content: str, prefix: str = '') -> st
 </head>
 <body>
 {content}
+{lightbox_markup()}
 </body>
 </html>
 '''
+
+
+def expandable_image(src: str, alt: str, caption: str, prefix: str = '', eager: bool = False) -> str:
+    image_src = f'{prefix}{esc(src)}'
+    load_hint = 'fetchpriority="high"' if eager else 'loading="lazy"'
+    return f'''<button class="image-expand" type="button" data-expand-image data-image="{image_src}" data-alt="{esc(alt)}" data-caption="{esc(caption)}" aria-label="Expand image: {esc(alt)}" aria-haspopup="dialog">
+<img {load_hint} src="{image_src}" alt="">
+<span class="image-expand-hint" aria-hidden="true">Expand ↗</span>
+</button>'''
+
+
+def lightbox_markup() -> str:
+    return '''<dialog class="image-viewer" data-image-viewer aria-label="Expanded project image">
+  <button class="image-viewer-close" type="button" data-viewer-close aria-label="Close expanded image">Close <span aria-hidden="true">×</span></button>
+  <figure class="image-viewer-figure"><img data-viewer-image alt=""><figcaption data-viewer-caption></figcaption></figure>
+</dialog>'''
 
 
 def home_page() -> str:
@@ -71,7 +88,7 @@ def home_page() -> str:
     <a class="text-link" href="{href}">Read the case study <span aria-hidden="true">→</span></a>
   </div>
   <figure class="project-image">
-    <img loading="lazy" src="{esc(image['src'])}" alt="{esc(image['alt'])}">
+    {expandable_image(image['src'], image['alt'], image['caption'])}
     <figcaption>{esc(image['caption'])}</figcaption>
   </figure>
 </article>''')
@@ -86,7 +103,7 @@ def home_page() -> str:
         <div class="hero-actions"><a class="button-link" href="#projects">Explore the projects <span aria-hidden="true">↓</span></a><a class="text-link" href="#about">About this portfolio</a></div>
       </div>
       <figure class="hero-art">
-        <img src="{esc(first['charts'][0]['src'])}" alt="{esc(first['charts'][0]['alt'])}">
+        {expandable_image(first['charts'][0]['src'], first['charts'][0]['alt'], first['charts'][0]['caption'], eager=True)}
         <figcaption class="figure-caption"><strong>01 / Hong Kong internet adoption</strong><span>1980—2020</span></figcaption>
       </figure>
     </div>
@@ -107,7 +124,7 @@ def home_page() -> str:
 
 def project_card_figure(chart: dict, prefix: str, hero: bool = False) -> str:
     cls = 'case-hero-figure' if hero else 'chart-figure'
-    return f'''<figure class="{cls}"><img {'fetchpriority="high"' if hero else 'loading="lazy"'} src="{prefix}{esc(chart['src'])}" alt="{esc(chart['alt'])}"><figcaption>{esc(chart['caption'])}</figcaption></figure>'''
+    return f'''<figure class="{cls}">{expandable_image(chart['src'], chart['alt'], chart['caption'], prefix, eager=hero)}<figcaption>{esc(chart['caption'])}</figcaption></figure>'''
 
 
 def project_page(p: dict, idx: int) -> str:

@@ -121,6 +121,17 @@ h3 { font-size: 20px; line-height: 1.2; }
 .chart-figure { margin: 0; background: var(--paper-bright); border: 1px solid var(--line); padding: 10px; }
 .chart-figure img { width: 100%; aspect-ratio: 1.45; object-fit: contain; background: #fff; }
 .chart-figure figcaption { padding: 11px 2px 2px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.image-expand { position: relative; display: block; width: 100%; padding: 0; border: 0; background: transparent; color: inherit; cursor: zoom-in; text-align: left; }
+.image-expand:hover img { filter: brightness(.96); }
+.image-expand-hint { position: absolute; right: 9px; bottom: 9px; padding: 5px 8px; color: #fff; background: rgba(23,33,30,.9); font: 10px/1.2 var(--mono); letter-spacing: .04em; pointer-events: none; }
+.image-viewer { position: relative; width: max-content; max-width: 96vw; max-height: 94vh; padding: 34px 16px 16px; overflow: auto; border: 1px solid rgba(255,255,255,.2); background: #17211e; color: #fbfaf6; box-shadow: 0 24px 100px rgba(0,0,0,.42); }
+.image-viewer[open] { display: grid; align-content: center; }
+.image-viewer::backdrop { background: rgba(13,19,17,.9); }
+.image-viewer-figure { display: grid; justify-items: center; gap: 12px; margin: 0; }
+.image-viewer-figure img { display: block; width: auto; height: auto; max-width: calc(96vw - 64px); max-height: calc(88vh - 70px); object-fit: contain; background: #fff; }
+.image-viewer-figure figcaption { max-width: 980px; color: #e2e8e2; font-size: 13px; line-height: 1.5; }
+.image-viewer-close { position: absolute; z-index: 1; top: 7px; right: 8px; min-width: 44px; min-height: 44px; padding: 0 10px; border: 1px solid rgba(255,255,255,.35); background: #26342f; color: #fff; font: 12px var(--sans); cursor: pointer; }
+.image-viewer-close:hover { background: #3b5048; }
 .data-note { padding: 18px 20px; background: var(--soft-rust); border-left: 3px solid var(--rust); color: #533a30; font-size: 13px; }
 .data-note strong { color: #3b2b25; }
 .project-switcher { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid var(--line); padding-top: 22px; }

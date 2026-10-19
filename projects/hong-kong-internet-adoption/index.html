@@ -26,7 +26,10 @@
     <div><p class="eyebrow">PROJECT 01 · Exploratory analysis</p><h1>How Hong Kong connected</h1><p class="lede">A four-decade view of internet adoption—and a reminder that subscriptions and people are not the same measure.</p>
       <div class="case-actions"><a class="button-link" href="../../notebooks/01-hong-kong-internet-adoption.ipynb" download="01-hong-kong-internet-adoption.ipynb">Download notebook <span aria-hidden="true">↓</span></a><a class="text-link" href="../../index.html#projects">All projects</a></div>
     </div>
-    <figure class="case-hero-figure"><img fetchpriority="high" src="../../assets/charts/hk-users-over-time.png" alt="Line chart of the number of internet users in Hong Kong over time."><figcaption>Internet-user counts rise markedly after the mid-1990s.</figcaption></figure>
+    <figure class="case-hero-figure"><button class="image-expand" type="button" data-expand-image data-image="../../assets/charts/hk-users-over-time.png" data-alt="Line chart of the number of internet users in Hong Kong over time." data-caption="Internet-user counts rise markedly after the mid-1990s." aria-label="Expand image: Line chart of the number of internet users in Hong Kong over time." aria-haspopup="dialog">
+<img fetchpriority="high" src="../../assets/charts/hk-users-over-time.png" alt="">
+<span class="image-expand-hint" aria-hidden="true">Expand ↗</span>
+</button><figcaption>Internet-user counts rise markedly after the mid-1990s.</figcaption></figure>
   </div></section>
   <div class="container"><div class="case-facts" aria-label="Project details"><div class="case-fact"><span class="label">Data</span><strong>Global Internet Users 1980–2020 · 8,867 country-year rows</strong></div><div class="case-fact"><span class="label">Period</span><strong>1980–2020</strong></div><div class="case-fact"><span class="label">Tools</span><strong>Python, pandas, Seaborn, Matplotlib</strong></div></div></div>
   <div class="container case-layout">
@@ -37,7 +40,10 @@
       <section id="findings"><p class="eyebrow">WHAT THE RUN SHOWED</p><h2>Findings, with caveats.</h2><div class="result-panel"><div><h3>Observed finding</h3><p>The series shows a strong rise in internet use from the mid-1990s onward. Cellular subscriptions grow on a different scale and eventually exceed 100 per 100 people, so they cannot be read as a count of unique internet users.</p></div><div><h3>What to keep in mind</h3><p>These are aggregated country-level indicators. A subscription is not proof that a unique person has internet access, and the dataset’s definitions should be checked before comparing metrics directly.</p></div></div>
         <p class="data-note" style="margin-top:18px"><strong>Next iteration:</strong> A useful next step would be to verify indicator definitions and add population-normalized measures before making direct cross-metric comparisons.</p>
       </section>
-      <section id="visuals"><p class="eyebrow">SELECTED FIGURES</p><h2>What the analysis looked like</h2><div class="chart-grid"><figure class="chart-figure"><img loading="lazy" src="../../assets/charts/hk-internet-metrics.png" alt="Line chart comparing internet use, cellular subscriptions, and broadband subscriptions in Hong Kong."><figcaption>Comparing indicators reveals that subscriptions and internet users measure different things.</figcaption></figure></div></section>
+      <section id="visuals"><p class="eyebrow">SELECTED FIGURES</p><h2>What the analysis looked like</h2><div class="chart-grid"><figure class="chart-figure"><button class="image-expand" type="button" data-expand-image data-image="../../assets/charts/hk-internet-metrics.png" data-alt="Line chart comparing internet use, cellular subscriptions, and broadband subscriptions in Hong Kong." data-caption="Comparing indicators reveals that subscriptions and internet users measure different things." aria-label="Expand image: Line chart comparing internet use, cellular subscriptions, and broadband subscriptions in Hong Kong." aria-haspopup="dialog">
+<img loading="lazy" src="../../assets/charts/hk-internet-metrics.png" alt="">
+<span class="image-expand-hint" aria-hidden="true">Expand ↗</span>
+</button><figcaption>Comparing indicators reveals that subscriptions and internet users measure different things.</figcaption></figure></div></section>
       <section id="notebook"><p class="eyebrow">REPRODUCIBILITY</p><h2>Notebook and source data</h2><p>The downloadable notebook preserves the analysis code with saved outputs removed and data paths normalized to a local <code>data/</code> folder. Dataset files are not bundled; consult <code>notebooks/README.md</code> for the filenames referenced by the notebook and supply appropriately licensed source data before running it.</p><a class="text-link" href="../../notebooks/01-hong-kong-internet-adoption.ipynb" download>Download notebook <span aria-hidden="true">↓</span></a></section>
       <nav class="project-switcher" aria-label="Other case studies"><a href="../../projects/loan-approval-classification/index.html"><span>Next project</span>A decision tree on a 61-row loan sample →</a></nav>
     </div>
@@ -47,5 +53,9 @@
 <p>Matthew Ho · UNC Charlotte · ITCS 3162</p>
 <p>Coursework portfolio · <a href="../../index.html#projects">Back to projects ↑</a></p>
 </div></footer>
+<dialog class="image-viewer" data-image-viewer aria-label="Expanded project image">
+  <button class="image-viewer-close" type="button" data-viewer-close aria-label="Close expanded image">Close <span aria-hidden="true">×</span></button>
+  <figure class="image-viewer-figure"><img data-viewer-image alt=""><figcaption data-viewer-caption></figcaption></figure>
+</dialog>
 </body>
 </html>
