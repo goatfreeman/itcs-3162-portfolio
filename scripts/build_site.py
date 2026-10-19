@@ -67,7 +67,7 @@ def expandable_image(src: str, alt: str, caption: str, prefix: str = '', eager: 
 
 
 def lightbox_markup() -> str:
-    return '''<dialog class="image-viewer" data-image-viewer aria-label="Expanded project image">
+    return '''<dialog class="image-viewer" data-image-viewer tabindex="-1" aria-label="Expanded project image">
   <button class="image-viewer-close" type="button" data-viewer-close aria-label="Close expanded image">Close <span aria-hidden="true">×</span></button>
   <figure class="image-viewer-figure"><img data-viewer-image alt=""><figcaption data-viewer-caption></figcaption></figure>
 </dialog>'''

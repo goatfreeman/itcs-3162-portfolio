@@ -48,7 +48,7 @@ The loan-classification case study is explicitly described as an educational exe
 
 ## GitHub Pages
 
-A GitHub Actions workflow in `.github/workflows/pages.yml` publishes the static site whenever changes are pushed to `main` and can also be run manually. After the repository is created, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions**. The workflow uploads the static root and deploys it; the generated site uses relative links so it works at a repository subpath. Project chart images can be activated by mouse or keyboard to open a full-size, dismissible viewer; Escape closes it and returns focus to the chart.
+A GitHub Actions workflow in `.github/workflows/pages.yml` publishes the static site whenever changes are pushed to `main` and can also be run manually. After the repository is created, set **Settings → Pages → Build and deployment → Source** to **GitHub Actions**. The workflow uploads the static root and deploys it; the generated site uses relative links so it works at a repository subpath. Project charts open in a full-size viewer; the page position is preserved while the viewer is open.
 
 ## Notebook preparation
 
